@@ -57,7 +57,7 @@ namespace OpenGLTest.Utility
 
         public static Vector3 Add(this Vector3 org, float x = 0, float y = 0, float z = 0)
         {
-            return new Vector3(x == 0 ? org.X : org.X += x, y == 0 ? org.Y : org.Y += y, y == 0 ? org.Z : org.Z += z);
+            return new Vector3(x == 0 ? org.X : org.X += x, y == 0 ? org.Y : org.Y += y, z == 0 ? org.Z : org.Z += z);
         }
     }
 }

@@ -28,6 +28,10 @@ namespace OpenGLTest.Entities
                 Position = Position.Add(0.02f, 0, 0);
             else if (state.IsKeyDown(Key.A))
                 Position = Position.Add(-0.02f, 0, 0);
+            else if (state.IsKeyDown(Key.Z))
+                Position = Position.Add(0, -0.02f, 0);
+            else if (state.IsKeyDown(Key.X))
+                Position = Position.Add(0, 0.02f, 0);
         }
     }
 }
