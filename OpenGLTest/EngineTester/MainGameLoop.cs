@@ -23,7 +23,6 @@ namespace OpenGLTest.EngineTester
             {
                 _window.Run(_FPSCap);
 
-                Console.WriteLine("Running OpenGL version: " + GL.GetString(StringName.Version));
             }
         }
 

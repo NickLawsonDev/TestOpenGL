@@ -25,6 +25,7 @@ namespace OpenGLTest.RenderEngine
         private Entity _entity;
         private Camera _camera = new Camera();
         private Loader _loader = new Loader();
+        private Light _light = new Light(new Vector3(0, 0, -20.0f), new Vector3(1,1,1));
 
         public DisplayManager(int width, int height) : base(width, height, GraphicsMode.Default, "OpenTK Guide", GameWindowFlags.Default, DisplayDevice.Default,
                     3,0,GraphicsContextFlags.ForwardCompatible)
@@ -37,10 +38,12 @@ namespace OpenGLTest.RenderEngine
         {
             GL.ClearColor(0, 0, 1, 1);
 
-            _texture = new ModelTexture(_loader.LoadTexture(@"Content\stallTexture.png"));
-            var model = OBjLoader.LoadObjModel(@"Content\stall.obj", _loader);
+            _texture = new ModelTexture(_loader.LoadTexture(@"Content\whitetexture.png"));
+            var model = OBjLoader.LoadObjModel(@"Content\dragon.obj", _loader);
             _texturedModel = new TexturedModel(model, _texture);
-            _entity = new Entity(_texturedModel, new Vector3(0, -5.0f, -10.0f), 0, 0, 0, 1);
+            _entity = new Entity(_texturedModel, new Vector3(0, 0, -25.0f), 0, 0, 0, 1);
+
+            Console.WriteLine("Running OpenGL version: " + GL.GetString(StringName.Version));
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -57,6 +60,7 @@ namespace OpenGLTest.RenderEngine
             {
                 _camera.Move();
                 _shader.Start();
+                _shader.LoadLight(_light);
                 _shader.LoadViewMatrix(_camera);
                 _renderer.Render(_entity, _shader);
                 _shader.Stop();

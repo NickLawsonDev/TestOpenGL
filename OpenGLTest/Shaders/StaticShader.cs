@@ -17,6 +17,8 @@ namespace OpenGLTest.Shaders
         private int _LocationTransformationMatrix;
         private int _LocationProjectionMatrix;
         private int _LocationViewMatrix;
+        private int _LocationLightPosition;
+        private int _LocationLightColor;
 
         public StaticShader() : base(_VertexFile, _FragmentFile)
         {
@@ -26,6 +28,7 @@ namespace OpenGLTest.Shaders
         {
             BindAttribute(0, "position");
             BindAttribute(1, "textureCoords");
+            BindAttribute(2, "normal");
         }
 
         protected override void GetAllUniformLocations()
@@ -33,6 +36,8 @@ namespace OpenGLTest.Shaders
             _LocationTransformationMatrix = GetUniformLocation("transformationMatrix");
             _LocationProjectionMatrix = GetUniformLocation("projectionMatrix");
             _LocationViewMatrix = GetUniformLocation("viewMatrix");
+            _LocationLightPosition = GetUniformLocation("lightPosition");
+            _LocationLightColor = GetUniformLocation("lightColor");
         }
 
         public void LoadTransformationMatrix(Matrix4 matrix)
@@ -48,6 +53,12 @@ namespace OpenGLTest.Shaders
         public void LoadViewMatrix(Camera camera)
         {
             LoadMatrix(_LocationViewMatrix, MathExtensions.CreateViewMatrix(camera));
+        }
+
+        public void LoadLight(Light light)
+        {
+            LoadVector(_LocationLightPosition, light.Position);
+            LoadVector(_LocationLightColor, light.Color);
         }
     }
 }

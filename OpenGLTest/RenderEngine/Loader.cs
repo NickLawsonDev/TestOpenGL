@@ -17,13 +17,15 @@ namespace OpenGLTest.RenderEngine
         private List<int> _vaos = new List<int>();
         private List<int> _vbos = new List<int>();
         private List<int> _textures = new List<int>();
+        private List<int> _normals = new List<int>();
 
-        public RawModel LoadToVAO(float[] positions, int[] indices, float[] textureCoords)
+        public RawModel LoadToVAO(float[] positions, int[] indices, float[] textureCoords, float[] normals)
         {
             var vaoID = CreateVAO();
             BindIndicesBuffer(indices);
             StoreDataInAttributeList(0, 3, positions);
             StoreDataInAttributeList(1, 2, textureCoords);
+            StoreDataInAttributeList(2, 3, normals);
             UnbindVAO();
             return new RawModel(vaoID, indices.Length);
         }

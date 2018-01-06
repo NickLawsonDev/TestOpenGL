@@ -33,6 +33,7 @@ namespace OpenGLTest.RenderEngine
             GL.BindVertexArray(entity.Model.RawModel.VAOID);
             GL.EnableVertexAttribArray(0);
             GL.EnableVertexAttribArray(1);
+            GL.EnableVertexAttribArray(2);
             var transformationMatrix = MathExtensions.CreateTransformationMatrix(entity.Position, entity.RotX, entity.RotY, entity.RotZ, entity.Scale);
             shader.LoadTransformationMatrix(transformationMatrix);
             GL.ActiveTexture(TextureUnit.Texture0);
@@ -40,6 +41,7 @@ namespace OpenGLTest.RenderEngine
             GL.DrawElements(PrimitiveType.Triangles, entity.Model.RawModel.VertexCount, DrawElementsType.UnsignedInt, IntPtr.Zero);
             GL.DisableVertexAttribArray(0);
             GL.DisableVertexAttribArray(1);
+            GL.DisableVertexAttribArray(2);
             GL.BindVertexArray(0);
         }
 

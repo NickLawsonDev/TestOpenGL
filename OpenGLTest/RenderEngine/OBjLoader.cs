@@ -97,7 +97,7 @@ namespace OpenGLTest.EngineTester
                     indicesArray[i] = indices[i];
                 }
 
-                return loader.LoadToVAO(verticesArray, indicesArray, texturesArray);
+                return loader.LoadToVAO(verticesArray, indicesArray, texturesArray, normalsArray);
             }
             else
             {
